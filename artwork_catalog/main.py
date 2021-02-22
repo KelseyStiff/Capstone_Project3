@@ -7,27 +7,31 @@ def main():
 
     print_menu()
     user_input = 0
+
+    """while the user enters a valid menu option meny is shown -
+    menu set up mostly from https://chunkofcode.net/how-to-implement-a-dynamic-command-line-menu-in-python/"""
+
     while user_input != 7:
-        user_input = int(input('Enter Choice: '))
+        user_input = input('Enter Choice: ')
         
-        if user_input == 1:
+        if user_input == '1':
             add_artist()
 
-        elif user_input == 2:
+        elif user_input == '2':
             add_artwork()
 
-        elif user_input == 3:
+        elif user_input == '3':
             show_all_art_by_artist()
 
-        elif user_input == 4:
+        elif user_input == '4':
             show_available_art_by_artist()
 
-        elif user_input == 5:
+        elif user_input == '5':
             delete_artwork()
-        elif user_input == 6:
+        elif user_input == '6':
             change_availability()
 
-        elif user_input == 7:
+        elif user_input == '7':
             break
         print_menu()
         
@@ -64,8 +68,7 @@ def show_all_art_by_artist():
 
 def show_available_art_by_artist():
     search_term = ui.ask_question('Enter name of Artist to view their available works: ')
-    matches = db.artist_art_search(search_term)
-    available_art = db.get_available_art_by_artist(matches)
+    available_art = db.get_available_art_by_artist(search_term)
     ui.show_artwork(available_art)
 
 def delete_artwork():

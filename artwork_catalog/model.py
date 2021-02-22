@@ -22,6 +22,7 @@ class Artwork(Model):
 
     class Meta:
         database = db
+        constraints = [SQL('UNIQUE( art_name COLLATE NOCASE)')]
 
     def __str__(self):
         available_status = 'available' if self.art_available==True else 'sold'

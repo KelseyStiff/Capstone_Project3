@@ -1,7 +1,5 @@
 from model import Artwork, Artist
 
-
-
 def get_artist_info():
     """ Create a new Artist from name and email provided by user
      :returns: a Artist created from the name and email. """
@@ -10,15 +8,16 @@ def get_artist_info():
     return Artist(artist_email=artist_email, artist_name=artist_name)
 
 def get_artwork_info():
-    """ Create a new Artwork from artist,name,price, availability provided by user
+    """ Create a new Artwork from artist,name,price,availability provided by user
      :returns: a Artwork created from the info. """
-    
     art_name = input('Enter name of artwork: ')
     artist = input('Enter artist of artwork: ')
     art_price = input('Enter price of artwork: ')
     return Artwork(artist=artist, art_name=art_name, art_price=art_price)
 
 def show_artwork(artists_arts):
+    """ Display all of an artist's artwork in a list of Artworks, or a 'No artwork' message
+     :param artists_arts: the art list """
     if artists_arts:
         for art in artists_arts:
             print(art)

@@ -1,12 +1,12 @@
 from model import Artist, Artwork
 from peewee import fn
 
-def get_all_artists():
-    query = Artist.select()
-    return list(query)
+def delete_all_artwork():
+    """ Deletes all artwork from database """
+    Artwork.delete().execute()
 
 def delete_artwork(art):
-    """ removes art from catalog, raises ArtError if art doesnt exist """
+    """ removes art from catalog, error if art doesnt exist """
     try:
         rows_deleted = Artwork.delete().where(Artwork.art_name == art).execute()
     except:
@@ -25,8 +25,12 @@ def get_art_by_id(art_id):
     return Artwork.get_or_none(Artwork.id == art_id)
 
 def get_available_art_by_artist(artist):
-    query = Artwork.select().where(Artwork.art_available == True and ( fn.LOWER(Artwork.artist).contains(artist.lower() ) ) )
-    return list(query)
+    """ Get a list of art by artist that matches search term and art is aviailable
+    :param term(the user input)
+    :returns list of art by artist that is available 
+    """
+    available_art = Artwork.select().where( (Artwork.art_available == True) & (Artwork.artist == artist))
+    return available_art
 
 
     
